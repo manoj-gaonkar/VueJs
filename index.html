@@ -35,6 +35,7 @@
 <body>
     I am Learning Vue Js
     <div id="app">
+        
         <div v-if=" count%2==0 ">
             even
         </div>
@@ -49,7 +50,7 @@
             <span v-else>Show Books</span>
         </button> <br>
         <div v-if="showbooks">
-            <div v-for="book in books" class="bookcontainer">
+            <div v-for="book in filteredBooks" class="bookcontainer">
                 <ul :class=" {favourite: book.isFav} " style="width:80%; display:flex; justify-content:space-around; align-items:center; padding:1rem; ">
                     <img :src="book.img" alt="" @click="book.isFav=!book.isFav ">
                     <li> Book:{{ book.title }} </li>
