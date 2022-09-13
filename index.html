@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 45%;
+            margin: 0 5px;
+            background-color: #cfcfcf;
+            display: inline-block;
+            color: rgb(59, 59, 59);
+            text-align: center;
+        }
+
+        .bookcontainer {
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            
+        }
+
+        .favourite{
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    I am Learning Vue Js
+    <div id="app">
+        <div v-if=" count%2==0 ">
+            even
+        </div>
+        <h2> {{ title }} - {{ count }} </h2>
+        <button v-on:click="count++; changeTitle(count)">add</button>
+        <button v-on:click="count--; changeTitle(count) ">remove</button>
+
+        <br>
+        <!-- show books -->
+        <button @click="togglebooks">
+            <span v-if="showbooks">Hide Books</span>
+            <span v-else>Show Books</span>
+        </button> <br>
+        <div v-if="showbooks">
+            <div v-for="book in books" class="bookcontainer">
+                <ul :class=" {favourite: book.isFav} " style="width:80%; display:flex; justify-content:space-around; align-items:center; padding:1rem; ">
+                    <img :src="book.img" alt="" @click="book.isFav=!book.isFav ">
+                    <li> Book:{{ book.title }} </li>
+                    <p> Author: {{ book.author }}</p>
+                </ul>
+            </div>
+        </div>
+
+        <h3 v-show='showbooks'>Books are showing</h3>
+
+        <!-- mouse events -->
+        <div class="box" @mouseover="mouseevent">mouse over</div>
+        <div class="box" @mouseleave="mouseevent;">mouseleave</div>
+        <div class="box" @dblclick="mouseevent">doubleclick</div>
+        <div class="box" @mousemove="mouseover">x: {{ x }} y: {{ y }} </div>
+
+        <!-- for looop usage in templates -->
+        <ol>
+            <div v-for="book in books">
+                <li> Book:{{ book.title }} | Author: {{ book.author }}</li>
+            </div>
+        </ol>
+
+    </div>
+</body>
+<script src="./app.js"> </script>
+
+</html>
